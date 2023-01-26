@@ -5,7 +5,7 @@ type Note = Database['public']['Tables']['notes']['Row']
 
 // データ取得
 async function fetchNotes() {
-    // await new Promise((resolve) => setTimeout(resolve, 10000))
+    await new Promise((resolve) => setTimeout(resolve, 10000))
 
     //フェッチURL、リクエストヘッダーはsupabese　baｓh欄から参照
     const res = await fetch(`${process.env.url}/rest/v1/notes?select=*`, {
@@ -15,11 +15,11 @@ async function fetchNotes() {
 
         // ＳＳＲでおこなう
         // ビルド時にRoute (app)　─ λ となる
-        // cache: 'no-store',
+        cache: 'no-store',
 
         // IＳＲでおこなう
         // 変更後10秒間再レンダリングを無効にする
-        next: { revalidate: 10 },
+        // next: { revalidate: 10 },
     })
 
     if (!res.ok) {
